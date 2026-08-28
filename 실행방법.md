@@ -12,8 +12,8 @@
 ```bash
 docker login container-registry.oracle.com
 ```
-* **Username**: 오라클 계정 이메일/ID [`add0602@naver.com`]
-* **Password**: [Oracle Container Registry](https://container-registry.oracle.com/)에서 생성한 **Auth Token** 입력 [`W2PjSiw0i8P_PGcL5ZR`]
+* **Username**: 오라클 계정 이메일/ID [``]
+* **Password**: [Oracle Container Registry](https://container-registry.oracle.com/)에서 생성한 **Auth Token** 입력 [``]
 
 ---
 
