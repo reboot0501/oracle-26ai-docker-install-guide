@@ -6,11 +6,13 @@ services:
     container_name: oracle26ai-free
     restart: unless-stopped
     ports:
-      - "1521:1521"   # PC의 1521 포트로 오라클 DB 리스너 연결
-      - "39832:5500"   # Enterprise Manager Express Port
+      - "${ORACLE_PORT:-1521}:1521"   # PC의 1521 포트로 오라클 DB 리스너 연결
+      - "${EM_EXPRESS_PORT:-39832}:5500"   # Enterprise Manager Express Port
     environment:
-      - ORACLE_PWD=xxxxxxxx
-      - ORACLE_CHARACTERSET=AL32UTF8
+      - ORACLE_PWD=${ORACLE_PWD}
+      - ORACLE_CHARACTERSET=${ORACLE_CHARACTERSET:-AL32UTF8}
+      - HR_USER_PWD=${HR_USER_PWD:-hr1234}
+      - INFORM_NOTE_PWD=${INFORM_NOTE_PWD:-${ORACLE_PWD}}
     volumes:
       # 1. HR 스키마 및 초기 데이터 자동 생성 스크립트 마운트
       - ./setup_hr.sh:/opt/oracle/scripts/startup/01_setup_hr.sh:ro
