@@ -1,0 +1,62 @@
+# ==========================================
+# IDE & Tool Configurations (IDE 및 AI 도구 설정)
+# ==========================================
+.idea/
+.vscode/
+.claude/
+.gemini/
+.mcp.json
+*.sublime-workspace
+*.sublime-project
+
+# ==========================================
+# Node.js & Dependencies (노드 패키지 및 로그)
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ==========================================
+# Environment & Secrets (환경 변수 및 민감 정보)
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ==========================================
+# Operating System Files (운영체제 임시 파일)
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+
+# Linux
+*~
+
+# ==========================================
+# Logs & Temporary Files (로그 및 임시 파일)
+# ==========================================
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# ==========================================
+# Database & Volume Mounts (DB 로컬 데이터)
+# ==========================================
+oradata/

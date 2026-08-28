@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  oracle26ai:
+    image: container-registry.oracle.com/database/free:latest
+    container_name: oracle26ai-free
+    restart: unless-stopped
+    ports:
+      - "1521:1521"   # PC의 1521 포트로 오라클 DB 리스너 연결
+      - "39832:5500"   # Enterprise Manager Express Port
+    environment:
+      - ORACLE_PWD=leetj1485+
+      - ORACLE_CHARACTERSET=AL32UTF8
+    volumes:
+      # 1. HR 스키마 및 초기 데이터 자동 생성 스크립트 마운트
+      - ./setup_hr.sh:/opt/oracle/scripts/startup/01_setup_hr.sh:ro
+      # 2. INFORM_NOTE 스키마 자동 생성 스크립트 마운트
+      - ./setup_inform_note.sh:/opt/oracle/scripts/startup/02_setup_inform_note.sh:ro
+      # 3. HR 스키마 SQL 파일 디렉토리 마운트
+      - ./oracle-db-sample-schemas:/opt/oracle/sample-schemas:ro
+      # 4. 데이터 영구 보존 볼륨 (docker compose down 시에도 데이터 보존)
+      # 💡 docker compose down 시 데이터를 완전 삭제(휘발성)하고 싶다면 아래 라인을 주석 처리하세요.
+      - oracle26ai-oradata:/opt/oracle/oradata
+
+volumes:
+  oracle26ai-oradata:
+    name: oracle26ai-oradata
