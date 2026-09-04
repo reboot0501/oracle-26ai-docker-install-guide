@@ -9,6 +9,7 @@ export LANG=C.UTF-8
 export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
 
 HR_PWD="${HR_USER_PWD:-hr1234}"
+HR_PWD="$(echo "${HR_PWD}" | tr -d '\r')"
 
 # SYSDBA로 접속 후 FREEPDB1으로 전환
 sqlplus -s / as sysdba <<EOF

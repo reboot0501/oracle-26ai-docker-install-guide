@@ -9,6 +9,7 @@ export LANG=C.UTF-8
 export NLS_LANG=AMERICAN_AMERICA.AL32UTF8
 
 TARGET_PWD="${INFORM_NOTE_PWD:-${ORACLE_PWD}}"
+TARGET_PWD="$(echo "${TARGET_PWD}" | tr -d '\r')"
 
 # SYSDBA로 접속 후 FREEPDB1으로 전환
 sqlplus -s / as sysdba <<EOF
@@ -20,7 +21,7 @@ ALTER SESSION SET CONTAINER = FREEPDB1;
 
 -- 2. 기존 INFORM_NOTE 활성 세션 강제 종료 후 계정 삭제
 BEGIN
-   FOR c IN (SELECT sid, serial# FROM v$session WHERE username = 'INFORM_NOTE') LOOP
+   FOR c IN (SELECT sid, serial# FROM v\$session WHERE username = 'INFORM_NOTE') LOOP
       BEGIN
          EXECUTE IMMEDIATE 'ALTER SYSTEM KILL SESSION ''' || c.sid || ',' || c.serial# || ''' IMMEDIATE';
       EXCEPTION WHEN OTHERS THEN NULL;
